@@ -257,8 +257,8 @@ void ofApp::loadFile(){
         rares[i].loadImage(rareDir.getPath(i));
     }
     
-    cout<<"num commons  : "<<commons.size()<<endl;
-    cout<<"num uncommons: "<<uncommons.size()<<endl;
-    cout<<"num rares    : "<<rares.size()<<endl;
+//    cout<<"num commons  : "<<commons.size()<<endl;
+//    cout<<"num uncommons: "<<uncommons.size()<<endl;
+//    cout<<"num rares    : "<<rares.size()<<endl;
     
 }

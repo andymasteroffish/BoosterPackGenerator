@@ -2,3 +2,4 @@
 -instructions
 -icon
 -clean executables
+	-including default settings file that makes sense
