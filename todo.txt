@@ -1,0 +1,4 @@
+-windows version
+-instructions
+-icon
+-clean executables

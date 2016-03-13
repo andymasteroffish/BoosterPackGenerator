@@ -1,0 +1,12 @@
+<NUM_PACKS>6</NUM_PACKS>
+<NUM_COMMON>11</NUM_COMMON>
+<NUM_UNCOMMON>3</NUM_UNCOMMON>
+<NUM_RARE>1</NUM_RARE>
+<COMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/c</COMMON_SOURCE_FOLDER>
+<UNCOMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/u</UNCOMMON_SOURCE_FOLDER>
+<RARE_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/r</RARE_SOURCE_FOLDER>
+<OUTPUT_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/output</OUTPUT_FOLDER>
+<SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>
+<CLOSE_WHEN_FINISHED>TRUE</CLOSE_WHEN_FINISHED>
+<EDGE_PADDING>10</EDGE_PADDING>
+<CARD_PADDING>0</CARD_PADDING>
