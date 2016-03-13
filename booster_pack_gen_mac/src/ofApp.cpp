@@ -25,7 +25,6 @@ void ofApp::setup(){
     
     //get some info from XML
     ofxXmlSettings xml;
-    
     if (xml.loadFile("../settings.xml")){
         numPacks = xml.getValue("NUM_PACKS", numPacks);
         
@@ -54,7 +53,7 @@ void ofApp::setup(){
     numCardsPerPack = numCommonsPerPack + numUncommonsPerPack + numRaresPerPack;
     
     
-    loadFile();
+    loadCardImageFiles();
     
     
     
@@ -236,7 +235,7 @@ void ofApp::buildPack(){
 
 
 //--------------------------------------------------------------
-void ofApp::loadFile(){
+void ofApp::loadCardImageFiles(){
     
     ofDirectory commonDir, uncommonDir, rareDir;
     commonDir.listDir(sourceFolderCommons);
@@ -256,9 +255,5 @@ void ofApp::loadFile(){
     for (int i=0; i<rareDir.size(); i++){
         rares[i].loadImage(rareDir.getPath(i));
     }
-    
-//    cout<<"num commons  : "<<commons.size()<<endl;
-//    cout<<"num uncommons: "<<uncommons.size()<<endl;
-//    cout<<"num rares    : "<<rares.size()<<endl;
     
 }

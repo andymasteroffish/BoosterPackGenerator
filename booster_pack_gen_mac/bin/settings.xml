@@ -5,7 +5,7 @@
 <COMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/c</COMMON_SOURCE_FOLDER>
 <UNCOMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/u</UNCOMMON_SOURCE_FOLDER>
 <RARE_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/r</RARE_SOURCE_FOLDER>
-<OUTPUT_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/output</OUTPUT_FOLDER>
+<OUTPUT_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/output</OUTPUT_FOLDER>
 <SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>
 <CLOSE_WHEN_FINISHED>TRUE</CLOSE_WHEN_FINISHED>
 <EDGE_PADDING>10</EDGE_PADDING>

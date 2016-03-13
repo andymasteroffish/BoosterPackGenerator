@@ -22,7 +22,7 @@ class ofApp : public ofBaseApp{
     
     void buildPack();
     
-    void loadFile();
+    void loadCardImageFiles();
     
     ofTrueTypeFont font;
     
