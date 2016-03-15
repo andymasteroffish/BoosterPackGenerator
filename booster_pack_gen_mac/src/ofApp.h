@@ -21,6 +21,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     void buildPack();
+    void addAllCards();
     
     void loadCardImageFiles();
     
@@ -31,12 +32,13 @@ class ofApp : public ofBaseApp{
     int cardW, cardH;
     
     
-    //wha we're drawing from
+    //what we're drawing from
     string sourceFolderCommons, sourceFolderUncommons, sourceFolderRares;
     vector<ofImage> commons, uncommons, rares;
     int numCommonsPerPack, numUncommonsPerPack, numRaresPerPack;
     int numCardsPerPack;
     
+    bool printAllCards; //if this is true, instead of making booster packs, we just print one of each card
     
     //what's being pinted
     vector<ofImage> cards;

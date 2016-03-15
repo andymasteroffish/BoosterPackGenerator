@@ -10,3 +10,7 @@
 <CLOSE_WHEN_FINISHED>TRUE</CLOSE_WHEN_FINISHED>
 <EDGE_PADDING>10</EDGE_PADDING>
 <CARD_PADDING>0</CARD_PADDING>
+
+<!-- If this is set to true, it will override all booster pack info and just print out a full set with one of each card -->
+<!-- Pack numbers will bot be printed if this is set to true -->
+<PRINT_ALL_CARDS_IN_ORDER>FALSE</PRINT_ALL_CARDS_IN_ORDER>

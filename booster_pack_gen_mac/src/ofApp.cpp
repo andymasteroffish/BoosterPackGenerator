@@ -20,6 +20,8 @@ void ofApp::setup(){
     closeWhenDone = false;
     showPackNumbers = true;
     
+    printAllCards = false;
+    
     edgePadding = 0;
     cardPadding = 0;
     
@@ -45,6 +47,8 @@ void ofApp::setup(){
         edgePadding = xml.getValue("EDGE_PADDING", edgePadding);
         cardPadding = xml.getValue("CARD_PADDING", cardPadding);
         
+        printAllCards = xml.getValue("PRINT_ALL_CARDS_IN_ORDER", "FALSE") == "TRUE";
+        
         settingsFileNotFound = false;
     }else{
         settingsFileNotFound = true;
@@ -65,9 +69,12 @@ void ofApp::setup(){
     
     fbo.allocate(cardW*3+pagePadding+edgePadding*2-cardPadding, cardH*3+pagePadding+edgePadding*2-cardPadding, GL_RGB);
     
-    
-    for (int i=0; i<numPacks; i++){
-        buildPack();
+    if (!printAllCards){
+        for (int i=0; i<numPacks; i++){
+            buildPack();
+        }
+    }else{
+        addAllCards();
     }
     
     curCard = 0;
@@ -86,7 +93,7 @@ void ofApp::update(){
                     cards[curCard].draw(cardW*c+edgePadding, cardH*r+edgePadding, false);
                     
                     //print the pack number
-                    if (showPackNumbers){
+                    if (showPackNumbers && !printAllCards){
                         string packNumber = ofToString(curCard/numCardsPerPack + 1);
                         
                         ofRectangle outterBox = font.getStringBoundingBox(packNumber, 0, 0);
@@ -136,7 +143,11 @@ void ofApp::draw(){
     float prc = (float)MIN(curCard, cards.size()) / (float)cards.size();
     
     ofSetColor(0);
-    ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard/numCardsPerPack, cards.size()/numCardsPerPack) )+" out of "+ofToString(numPacks)+" packs", 15, 20);
+    if (!printAllCards){
+        ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard/numCardsPerPack, cards.size()/numCardsPerPack) )+" out of "+ofToString(numPacks)+" packs", 15, 20);
+    }else{
+        ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard, cards.size()) )+" out of "+ofToString(cards.size())+" cards", 15, 20);
+    }
     ofDrawBitmapString("        : "+ ofToString( (int)(prc * 100) )+"%", 15, 35);
     
     int numBars = 35;//55;
@@ -218,7 +229,6 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 //--------------------------------------------------------------
 void ofApp::buildPack(){
 
-    
     for (int i=0; i<numCommonsPerPack; i++){
         cards.push_back( commons[ (int)ofRandom(commons.size())] );
     }
@@ -229,6 +239,22 @@ void ofApp::buildPack(){
     
     for (int i=0; i<numRaresPerPack; i++){
         cards.push_back( rares[ (int)ofRandom(rares.size())] );
+    }
+    
+}
+
+//--------------------------------------------------------------
+void ofApp::addAllCards(){
+    
+    for (int i=0; i<commons.size(); i++){
+        cards.push_back( commons[i] );
+    }
+    
+    for (int i=0; i<uncommons.size(); i++){
+        cards.push_back( uncommons[i] );
+    }
+    for (int i=0; i<rares.size(); i++){
+        cards.push_back( rares[i] );
     }
     
 }
