@@ -1,15 +1,17 @@
-﻿------------------
+------------------
 BoosterPackGenerator
 ------------------
 
-A lightweight app that takes card images from folders and spits out print &amp; play booster pack sheets.
+A lightweight app that takes card images from folders and spits out print and play booster pack sheets.
 version 1.0
 
 Made by Andy Wallace. AndyMakes.com
 @andy_makes
 andy@andymakes.com
 
-Created using openFrameworks
+Created using openFrameworks.
+
+The code for this project can be found here: https://github.com/andymasteroffish/BoosterPackGenerator
 
 
 ------------------
