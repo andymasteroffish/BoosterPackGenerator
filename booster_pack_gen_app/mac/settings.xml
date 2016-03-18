@@ -1,0 +1,16 @@
+<NUM_PACKS>24</NUM_PACKS>
+<NUM_COMMON>11</NUM_COMMON>
+<NUM_UNCOMMON>3</NUM_UNCOMMON>
+<NUM_RARE>1</NUM_RARE>
+<COMMON_SOURCE_FOLDER>/path/to/commons</COMMON_SOURCE_FOLDER>
+<UNCOMMON_SOURCE_FOLDER>/path/to/uncommons</UNCOMMON_SOURCE_FOLDER>
+<RARE_SOURCE_FOLDER>/path/to/rares</RARE_SOURCE_FOLDER>
+<OUTPUT_FOLDER>../output</OUTPUT_FOLDER>
+<SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>
+<CLOSE_WHEN_FINISHED>TRUE</CLOSE_WHEN_FINISHED>
+<EDGE_PADDING>10</EDGE_PADDING>
+<CARD_PADDING>0</CARD_PADDING>
+
+<!-- If this is set to true, it will override all booster pack info and just print out a full set with one of each card -->
+<!-- Pack numbers will bot be printed if this is set to true -->
+<PRINT_ALL_CARDS_IN_ORDER>FALSE</PRINT_ALL_CARDS_IN_ORDER>
