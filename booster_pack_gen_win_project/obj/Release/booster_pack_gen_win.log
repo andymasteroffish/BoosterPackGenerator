@@ -1,11 +1,6 @@
-﻿  ofxXmlSettings.cpp
-  tinyxml.cpp
-  tinyxmlerror.cpp
-  tinyxmlparser.cpp
-  main.cpp
-  ofApp.cpp
+﻿  ofApp.cpp
      Creating library bin\booster_pack_gen_win.lib and object bin\booster_pack_gen_win.exp
   LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-  booster_pack_gen_win.vcxproj -> C:\Users\awallace\Documents\of_v0.9.3_vs_release\apps\BoosterPackGenerator\booster_pack_gen_win\bin\booster_pack_gen_win.exe
+  booster_pack_gen_win.vcxproj -> C:\Users\awallace\Documents\of_v0.9.3_vs_release\apps\BoosterPackGenerator\booster_pack_gen_win_project\bin\booster_pack_gen_win.exe
   
   	                   9	C:\Users\awallace\Documents\of_v0.9.3_vs_release\export\vs\Win32\
