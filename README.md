@@ -1,11 +1,11 @@
-# BoosterPackGenerator
+﻿# BoosterPackGenerator
 A lightweight app that takes card images from folders and spits out print &amp; play booster pack sheets.
 
 Made by Andy Wallace. AndyMakes.com
 @andy_makes
 andy@andymakes.com
 
-Created using openFrameworks 0.8.4
+Created using openFrameworks
 
 
 ------------------
@@ -14,11 +14,12 @@ What is it?
 
 This app will create ready to print booster packs by drawing images from three folders (common, uncommon, rare) and randomly putting them into sets.
 
-The card images can be of any size but they must all be the same size.
-Any standard image format should work.
+The card images can be of any size but they must all be the same size. Images must be .jpg .gif or .png.
 
 There is a settings.xml file that the app will look for that describes where the card images are and with what frequency they should appear (among other things).
-This file must be on the same level as the app.
+This file must be in the same folder as the app.
+
+You can edit settings.xml by opening it up with any text editting program.
 
 
 ------------------
