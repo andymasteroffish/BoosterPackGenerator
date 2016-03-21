@@ -38,6 +38,7 @@ class ofApp : public ofBaseApp{
     vector<ofImage> commons, uncommons, rares;
     int numCommonsPerPack, numUncommonsPerPack, numRaresPerPack;
     int numCardsPerPack;
+    bool allowDuplicates;
     
     bool printAllCards; //if this is true, instead of making booster packs, we just print one of each card
     

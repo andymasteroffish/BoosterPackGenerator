@@ -14,7 +14,7 @@
 		<string>https://github.com/andymasteroffish/BoosterPackGenerator.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>booster_pack_gen_mac/card_generator.xcodeproj</string>
+	<string>booster_pack_gen_mac_project/card_generator.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>ABD9DAEBBF2E3F12903B669E3890F913D2937A8F</key>

@@ -13,6 +13,8 @@ void ofApp::setup(){
     numUncommonsPerPack = 3;
     numRaresPerPack = 1;
     
+    allowDuplicates = false;
+    
     sourceFolderCommons = "source/c";
     sourceFolderUncommons = "source/u";
     sourceFolderRares = "source/r";
@@ -50,6 +52,8 @@ void ofApp::setup(){
         cardPadding = xml.getValue("CARD_PADDING", cardPadding);
         
         printAllCards = xml.getValue("PRINT_ALL_CARDS_IN_ORDER", "FALSE") == "TRUE";
+        
+        allowDuplicates = xml.getValue("ALLOW_DUPLICATES", "FALSE") == "TRUE";
         
         settingsFileNotFound = false;
     }else{
@@ -236,17 +240,59 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::buildPack(){
+    
+    //jesus christ. make a function for this.
+    
+    vector<int> idsUsed;
 
     for (int i=0; i<numCommonsPerPack; i++){
-        cards.push_back( commons[ (int)ofRandom(commons.size())] );
+        int thisCardID = (int)ofRandom(commons.size());
+        bool goodID = allowDuplicates;
+        while (!goodID){
+            thisCardID = (int)ofRandom(commons.size());
+            goodID = true;
+            for (int k=0; k<idsUsed.size(); k++){
+                if (thisCardID == idsUsed[k]){
+                    goodID = false;
+                }
+            }
+        }
+        idsUsed.push_back(thisCardID);
+        cards.push_back( commons[thisCardID] );
     }
     
+    idsUsed.clear();
     for (int i=0; i<numUncommonsPerPack; i++){
-        cards.push_back( uncommons[ (int)ofRandom(uncommons.size())] );
+        int thisCardID = (int)ofRandom(uncommons.size());
+        bool goodID = allowDuplicates;
+        while (!goodID){
+            thisCardID = (int)ofRandom(uncommons.size());
+            goodID = true;
+            for (int k=0; k<idsUsed.size(); k++){
+                if (thisCardID == idsUsed[k]){
+                    goodID = false;
+                }
+            }
+        }
+        idsUsed.push_back(thisCardID);
+        cards.push_back( uncommons[thisCardID] );
     }
     
+    idsUsed.clear();
     for (int i=0; i<numRaresPerPack; i++){
-        cards.push_back( rares[ (int)ofRandom(rares.size())] );
+        int thisCardID = (int)ofRandom(rares.size());
+        bool goodID = allowDuplicates;
+        while (!goodID){
+            thisCardID = (int)ofRandom(rares.size());
+            goodID = true;
+            for (int k=0; k<idsUsed.size(); k++){
+                if (thisCardID == idsUsed[k]){
+                    goodID = false;
+                }
+            }
+        }
+        idsUsed.push_back(thisCardID);
+        cards.push_back( rares[thisCardID] );
     }
     
 }

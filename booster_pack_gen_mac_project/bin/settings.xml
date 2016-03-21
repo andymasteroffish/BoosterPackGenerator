@@ -2,6 +2,7 @@
 <NUM_COMMON>11</NUM_COMMON>
 <NUM_UNCOMMON>3</NUM_UNCOMMON>
 <NUM_RARE>1</NUM_RARE>
+<ALLOW_DUPLICATES>FALSE</ALLOW_DUPLICATES>
 <COMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/c</COMMON_SOURCE_FOLDER>
 <UNCOMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/u</UNCOMMON_SOURCE_FOLDER>
 <RARE_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/beta/r</RARE_SOURCE_FOLDER>
