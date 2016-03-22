@@ -51,7 +51,12 @@ class ofApp : public ofBaseApp{
     
     int edgePadding, cardPadding;
     
+    bool errorsFound;
     bool settingsFileNotFound;
+    bool folderNotFoundCommon, folderNotFoundUncommon, folderNotFoundRare;
+    bool notEnoughCommons, notEnoughUncommons, notEnoughRares;
+    
+    
     bool closeWhenDone;
     
 };
