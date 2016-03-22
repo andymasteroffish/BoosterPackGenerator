@@ -1,9 +1,12 @@
 #include "ofApp.h"
 
+string versionNum = "1.1";
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofEnableSmoothing();
     ofEnableAntiAliasing();
+    ofBackground(250);
 
 	cout << "loading files..." << endl;
     
@@ -94,7 +97,7 @@ void ofApp::setup(){
     }
     int pagePadding = 0;
     
-    font.loadFont("Helvetica.ttf", (int)((float)cardH * 0.033));
+    font.loadFont("frabk.ttf", (int)((float)cardH * 0.033));
     
     fbo.allocate(cardW*3+pagePadding+edgePadding*2-cardPadding, cardH*3+pagePadding+edgePadding*2-cardPadding, GL_RGB);
     
@@ -149,6 +152,7 @@ void ofApp::update(){
                         ofSetColor(0);
                         font.drawString(packNumber, 0, 0);
                         ofPopMatrix();
+                
                     }
 				}
 				curCard++;
@@ -317,7 +321,7 @@ void ofApp::draw(){
     
     ofSetColor(0);
     ofDrawBitmapString("Generator by Andy Wallace. AndyMakes.com", 15, ofGetHeight()-5);
-    
+    ofDrawBitmapString("version "+versionNum, ofGetWidth()-100, 15);
     
 }
 

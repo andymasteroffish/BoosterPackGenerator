@@ -1,4 +1,4 @@
-﻿# BoosterPackGenerator
+# BoosterPackGenerator
 A lightweight app that takes card images from folders and spits out print &amp; play booster pack sheets.
 
 Made by Andy Wallace. AndyMakes.com
@@ -34,6 +34,8 @@ NUM_COMMON : How many common cards per pack
 NUM_UNCOMMON : How many uncommon cards per pack
 NUM_RARE : How many rare cards per pack
 
+ALLOW_DUPLICATES : If set to “TRUE” a single pack can contain duplicates of the same card. If “FALSE”, each booster pack will contain only one of each card. You must have enough images in each source folder as the number of cards of that type per pack.
+
 COMMON_SOURCE_FOLDER : path to the folder on your computer that contains the common card images
 UNCOMMON_SOURCE_FOLDER : path to the folder on your computer that contains the uncommon card images
 RARE_SOURCE_FOLDER : path to the folder on your computer that contains the rare card images
@@ -42,9 +44,9 @@ OUTPUT_FOLDER : The path to the folder on your computer that the resulting print
 
 SHOW_PACK_NUMBERS : If set to "TRUE" a small box will appear at the bottom left corner showing the number of this pack. Useful because packs may be spread across several sheets.
 
-CLOSE_WHEN_FINISHED : If set to "TRUE" the app will exit automatically once it is done creating the sheets
-
 EDGE_PADDING : The amount of white space (in pixels) around the edge of each sheet
 CARD_PADDING : The amount of white space (in pixels) between each card
+
+CLOSE_WHEN_FINISHED : If set to "TRUE" the app will exit automatically once it is done creating the sheets
 
 PRINT_ALL_CARDS_IN_ORDER: If set to “TRUE”, overrides the first 4 settings (num packs, number of each card type) as well as the SHOW_PACK_NUMBERS. Instead, this will just print out one of every card in the three folders. No randomness. Use this to print out a set instead of booster packs.
