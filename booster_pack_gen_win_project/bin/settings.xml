@@ -2,14 +2,15 @@
 <NUM_COMMON>11</NUM_COMMON>
 <NUM_UNCOMMON>3</NUM_UNCOMMON>
 <NUM_RARE>1</NUM_RARE>
+<ALLOW_DUPLICATES>FALSE</ALLOW_DUPLICATES>
 <COMMON_SOURCE_FOLDER>C:\Users\awallace\Desktop\beta\c</COMMON_SOURCE_FOLDER>
 <UNCOMMON_SOURCE_FOLDER>C:\Users\awallace\Desktop\beta\u</UNCOMMON_SOURCE_FOLDER>
 <RARE_SOURCE_FOLDER>C:\Users\awallace\Desktop\beta\r</RARE_SOURCE_FOLDER>
 <OUTPUT_FOLDER>C:\Users\awallace\Desktop\beta\output</OUTPUT_FOLDER>
 <SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>
-<CLOSE_WHEN_FINISHED>TRUE</CLOSE_WHEN_FINISHED>
 <EDGE_PADDING>10</EDGE_PADDING>
 <CARD_PADDING>0</CARD_PADDING>
+<CLOSE_WHEN_FINISHED>FALSE</CLOSE_WHEN_FINISHED>
 
 <!-- If this is set to true, it will override all booster pack info and just print out a full set with one of each card -->
 <!-- Pack numbers will bot be printed if this is set to true -->
