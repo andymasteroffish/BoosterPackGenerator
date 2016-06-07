@@ -48,6 +48,7 @@ class ofApp : public ofBaseApp{
     int curCard;
     string outputFolder;
     bool showPackNumbers;
+    int packStartingNumber;
     
     int edgePadding, cardPadding;
     

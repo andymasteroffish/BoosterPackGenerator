@@ -64,6 +64,8 @@ void ofApp::setup(){
         
         allowDuplicates = xml.getValue("ALLOW_DUPLICATES", "FALSE") == "TRUE";
         
+        packStartingNumber = xml.getValue("PACKS_START_COUNTING_FROM", 1);
+        
         settingsFileNotFound = false;
     }else{
         settingsFileNotFound = true;
@@ -134,7 +136,7 @@ void ofApp::update(){
                     
                     //print the pack number
                     if (showPackNumbers && !printAllCards){
-                        string packNumber = ofToString(curCard/numCardsPerPack + 1);
+                        string packNumber = ofToString(packStartingNumber + curCard/numCardsPerPack);
                         
                         ofRectangle outterBox = font.getStringBoundingBox(packNumber, 0, 0);
                         float padding = cardH * 0.01;
