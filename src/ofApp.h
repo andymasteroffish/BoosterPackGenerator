@@ -26,9 +26,6 @@ class ofApp : public ofBaseApp{
     void buildPack();
     void addAllCards();
     
-//    void loadCardImageFiles();
-//	bool fileIsOK(ofFile thisFile);
-    
     ofTrueTypeFont font;
     
     int numPacks;
@@ -39,10 +36,7 @@ class ofApp : public ofBaseApp{
     //what we're drawing from
     vector<RarityTier> rarityTiers;
     vector< SourceFolder > sourceFolders;
-    //vector<
-    //string sourceFolderCommons, sourceFolderUncommons, sourceFolderRares;
-    //vector<ofImage> commons, uncommons, rares;
-    //int numCommonsPerPack, numUncommonsPerPack, numRaresPerPack;
+    
     int numCardsPerPack;
     bool allowDuplicates;
     
@@ -58,11 +52,8 @@ class ofApp : public ofBaseApp{
     
     int edgePadding, cardPadding;
     
-    bool errorsFound;
-    bool settingsFileNotFound;
-    bool folderNotFoundCommon, folderNotFoundUncommon, folderNotFoundRare;
-    bool notEnoughCommons, notEnoughUncommons, notEnoughRares;
-    
+    vector<string> errors;
+    vector<string> warnings;
     
     bool closeWhenDone;
     

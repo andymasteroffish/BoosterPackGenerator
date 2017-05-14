@@ -1,6 +1,6 @@
 #include "ofApp.h"
 
-string versionNum = "1.1";
+string versionNum = "2.0";
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -10,7 +10,8 @@ void ofApp::setup(){
 
 	cout << "loading files..." << endl;
     
-    errorsFound = false;
+    errors.clear();
+    warnings.clear();
     
     //set some defaults
     numPacks = 0;
@@ -30,7 +31,6 @@ void ofApp::setup(){
     //get some info from XML
     ofxXmlSettings xml;
     if (xml.loadFile("../settings.xml")){
-        settingsFileNotFound = false;
         
         //General settings
         numPacks = xml.getValue("NUM_PACKS", numPacks);
@@ -55,15 +55,15 @@ void ofApp::setup(){
         
         int imgSourceNum = xml.getNumTags("folder");
         for (int i=0; i<imgSourceNum; i++){
-            string idName = xml.getAttribute("folder", "id", "none", i);
-            string path = xml.getValue("folder", "none", i);
+            string idName = xml.getAttribute("folder", "id", "unkown", i);
+            string path = xml.getValue("folder", "unkown", i);
             cout<<"create folder "+idName+" pointing to "+path<<endl;
             
-            if (idName == "none"){
-                cout<<"MISSING ID NAME FOR SOURCE FOLDER"<<endl;
+            if (idName == "unkown"){
+                errors.push_back("Image source folder "+ofToString(i)+" has no id name.");
             }
-            else if (path == "none"){
-                cout<<"MISSING PATH FOR SOURCE FOLDER"<<endl;
+            else if (path == "unkown"){
+                errors.push_back("Image source folder '"+idName+"' does not list a folder path.");
             }
             else{
                 SourceFolder folder;
@@ -81,7 +81,7 @@ void ofApp::setup(){
         cout<<endl<<"loading "<<numTiers<<" rarity tiers"<<endl;
         
         for (int i=0; i<numTiers; i++){
-            string referenceName = xml.getAttribute("tier", "name", "none", i);
+            string referenceName = xml.getAttribute("tier", "name", "UNNAMED RARITY TIER", i);
             xml.pushTag("tier", i);
             cout<<"Creating tier "<<referenceName<<endl;;
             
@@ -89,7 +89,7 @@ void ofApp::setup(){
             int numFolders = xml.getNumTags("folder");
             
             if (cardCount <= 0){
-                cout<<"tier "+ referenceName +" has no card count"<<endl;
+                errors.push_back("Rarity tier '"+ referenceName +"' has no card count.");
             }
             else{
             
@@ -112,7 +112,8 @@ void ofApp::setup(){
                     }
                     
                     if (sourceIDNum == -1){
-                        cout<<"skipping unkown source folder in tier "<<referenceName<<": "+sourceName<<endl;
+                        warnings.push_back("Folder '"+sourceName+"' in tier '"+referenceName+"' could not be found.");
+                        warnings.push_back("    Make sure it is declared in the img_source section of settings.xml.");
                     }
                     else{
                         tier.addFolder(sourceIDNum, chance);
@@ -120,7 +121,7 @@ void ofApp::setup(){
                 }
                 
                 if (tier.imgSourceFolderIDs.size() == 0){
-                    cout<<"skipping tier "+referenceName+" because it had no source folders"<<endl;
+                    warnings.push_back("Skipping rarity tier '"+referenceName+"' because it had no viable source folders");
                 }else{
                     rarityTiers.push_back(tier);
                 }
@@ -132,35 +133,22 @@ void ofApp::setup(){
         xml.popTag();
         
     }else{
-        settingsFileNotFound = true;
-        errorsFound = true;
+        errors.push_back("settings.xml file not found. Check readme for info.");
     }
     
-    numCardsPerPack = 0;//numCommonsPerPack + numUncommonsPerPack + numRaresPerPack;
+    //make sure we have at least one rarity tier
+    if (rarityTiers.size() == 0){
+        errors.push_back("No rarity tiers with at least one valid source folder.");
+    }
+    
+    //count the number of cards that will be in each pack
+    numCardsPerPack = 0;
     for (int i=0; i<rarityTiers.size(); i++){
         numCardsPerPack += rarityTiers[i].cardCount;
     }
     
-    //loadCardImageFiles();
     
-    //make sure we have eough of each type
-    if (!errorsFound){      //don't bother with this check if we already have errors
-//        if (allowDuplicates){
-//            if (commons.size() < 1)                         notEnoughCommons = true;
-//            if (uncommons.size() < 1)                       notEnoughUncommons = true;
-//            if (rares.size() < 1)                           notEnoughRares = true;
-//        }else{
-//            if (commons.size() < numCommonsPerPack)         notEnoughCommons = true;
-//            if (uncommons.size() < numUncommonsPerPack)     notEnoughUncommons = true;
-//            if (rares.size() < numRaresPerPack)             notEnoughRares = true;
-//        }
-    }
-    
-    if (notEnoughCommons || notEnoughUncommons || notEnoughRares){
-        errorsFound = true;
-    }
-    
-    if (!errorsFound){
+    if (errors.size() == 0){
         cardW = sourceFolders[0].images[0].getWidth() + cardPadding;
         cardH = sourceFolders[0].images[0].getHeight() + cardPadding;
     }
@@ -179,13 +167,14 @@ void ofApp::setup(){
     }
     
     curCard = 0;
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
     
-    if (errorsFound){
+    if (errors.size() > 0){
         return;
     }
 	
@@ -255,114 +244,64 @@ void ofApp::draw(){
     
     //reading out xml
     ofPushMatrix();
-    ofTranslate(0,40);
+    ofTranslate(0,30);
     int settingsSpacing = 15;
     int settingCurY = 0;
     
     ofSetColor(0);
     
     //labels
-    ofDrawBitmapString("Num packs to print:", 15, settingCurY);
+    int labelX = 15;
+    ofDrawBitmapString("Num packs to print:", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Num commons per pack:", 15, settingCurY);
+    ofDrawBitmapString("Allow duplicates in a pack:", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Num uncommons per pack:", 15, settingCurY);
+    ofDrawBitmapString("Output folder: ", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Num rares per pack:", 15, settingCurY);
+    ofDrawBitmapString("Show pack numbers:", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Allow duplicates in a pack:", 15, settingCurY);
-    settingCurY += settingsSpacing * 2;
-    ofDrawBitmapString("Commons source folder:", 15, settingCurY);
+    ofDrawBitmapString("Edge padding (px):", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Uncommons source folder:", 15, settingCurY);
+    ofDrawBitmapString("Card padding (px):", labelX, settingCurY);
     settingCurY += settingsSpacing;
-    ofDrawBitmapString("Rares source folder", 15, settingCurY);
-    settingCurY += settingsSpacing;
-    ofDrawBitmapString("Output folder", 15, settingCurY);
-    settingCurY += settingsSpacing * 2;
-    ofDrawBitmapString("Show pack numbers:", 15, settingCurY);
-    settingCurY += settingsSpacing;
-    ofDrawBitmapString("Edge padding (px):", 15, settingCurY);
-    settingCurY += settingsSpacing;
-    ofDrawBitmapString("Card padding (px):", 15, settingCurY);
-    settingCurY += settingsSpacing;
-    ofDrawBitmapString("Close when finished:", 15, settingCurY);
+    ofDrawBitmapString("Close when finished:", labelX, settingCurY);
     
     //values
-//    int settingsX = 250;
-//    settingCurY = 0;
-//    ofDrawBitmapString(ofToString(numPacks), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor( notEnoughCommons ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(ofToString(numCommonsPerPack), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor( notEnoughUncommons ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(ofToString(numUncommonsPerPack), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor( notEnoughRares ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(ofToString(numRaresPerPack), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofDrawBitmapString(allowDuplicates ? "TRUE" : "FALSE", settingsX, settingCurY);
-//    settingCurY += settingsSpacing * 2;
-//    ofSetColor( folderNotFoundCommon ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(sourceFolderCommons, settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor( folderNotFoundUncommon ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(sourceFolderUncommons, settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor( folderNotFoundRare ? ofColor::red : ofColor::black);
-//    ofDrawBitmapString(sourceFolderRares, settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofSetColor(0);
-//    ofDrawBitmapString(outputFolder, settingsX, settingCurY);
-//    settingCurY += settingsSpacing*2;
-//    ofDrawBitmapString(showPackNumbers ? "TRUE" : "FALSE", settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofDrawBitmapString(ofToString(edgePadding), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofDrawBitmapString(ofToString(cardPadding), settingsX, settingCurY);
-//    settingCurY += settingsSpacing;
-//    ofDrawBitmapString(closeWhenDone ? "TRUE" : "FALSE", settingsX, settingCurY);
-//    
-//    if (errorsFound){
-//        settingCurY += settingsSpacing * 3;
-//        ofSetColor(255,0,0);
-//        if (settingsFileNotFound){
-//            ofSetColor(255, 0, 0);
-//            ofDrawBitmapString("SETTINGS FILE NOT FOUND\nCHECK README FOR INFO", 15, settingCurY);
-//        }else{
-//            string errorMessage = "ERRORS FOUND\n";
-//            
-//            if (folderNotFoundCommon)   errorMessage += "Comons source folder not found\n";
-//            if (folderNotFoundUncommon)   errorMessage += "Uncomons source folder not found\n";
-//            if (folderNotFoundRare)   errorMessage += "Rare source folder not found\n";
-//            
-//            if (notEnoughCommons)   errorMessage += "Not enough common card images ("+ofToString(commons.size())+")\n";
-//            if (notEnoughUncommons)   errorMessage += "Not enough uncommon card images ("+ofToString(uncommons.size())+")\n";
-//            if (notEnoughRares)   errorMessage += "Not enough rare card images ("+ofToString(rares.size())+")\n";
-//            
-//            errorMessage += "CHECK settings.xml AND TRY AGAIN";
-//            ofDrawBitmapString(errorMessage, 15, settingCurY);
-//        }
-//    }
-    
-    ofPopMatrix();
+    int valueX = 250;
+    settingCurY = 0;
+    ofDrawBitmapString(ofToString(numPacks), valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(allowDuplicates ? "TRUE" : "FALSE", valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(outputFolder, valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(showPackNumbers ? "TRUE" : "FALSE", valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(ofToString(edgePadding), valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(ofToString(cardPadding), valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString(closeWhenDone ? "TRUE" : "FALSE", valueX, settingCurY);
+    settingCurY += settingsSpacing;
     
     //Printing info
-    if (!errorsFound){
-        ofPushMatrix();
-        ofTranslate(0, 300);
+    settingCurY += settingsSpacing * 2;
+    if (errors.size() == 0){
+        //ofPushMatrix();
+        //ofTranslate(0, settingCurY);
         
         float prc = (float)MIN(curCard, cards.size()) / (float)cards.size();
         
         ofSetColor(0);
         if (!printAllCards){
-            ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard/numCardsPerPack, cards.size()/numCardsPerPack) )+" out of "+ofToString(numPacks)+" packs", 15, 20);
+            ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard/numCardsPerPack, cards.size()/numCardsPerPack) )+" out of "+ofToString(numPacks)+" packs", 15, settingCurY);
         }else{
-            ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard, cards.size()) )+" out of "+ofToString(cards.size())+" cards", 15, 20);
+            ofDrawBitmapString("Printing: "+ ofToString( MIN(curCard, cards.size()) )+" out of "+ofToString(cards.size())+" cards", 15, settingCurY);
         }
-        ofDrawBitmapString("        : "+ ofToString( (int)(prc * 100) )+"%", 15, 35);
-        //cout << ofToString((int)(prc * 100)) << "%" << endl;
+        settingCurY += settingsSpacing;
+        
+        ofDrawBitmapString("        : "+ ofToString( (int)(prc * 100) )+"%", 15, settingCurY);
+        settingCurY += settingsSpacing * 2;
         
         int numBars = 35;//55;
         int progressPoint = numBars * prc;
@@ -380,15 +319,45 @@ void ofApp::draw(){
             }
         }
         progress += ">";
-        ofDrawBitmapString(progress, 15, 70);
+        ofDrawBitmapString(progress, 15, settingCurY);
+        settingCurY += settingsSpacing;
         
-        //card info
-//        ofDrawBitmapString("commons  : "+ofToString(commons.size()), 15, 100);
-//        ofDrawBitmapString("uncommons: "+ofToString(uncommons.size()), 15, 115);
-//        ofDrawBitmapString("rares    : "+ofToString(rares.size()), 15, 130);
-        
-        ofPopMatrix();
+        //ofPopMatrix();
     }
+    
+    //show errors
+    if (errors.size() > 0){
+        settingCurY += settingsSpacing * 2;
+        ofSetColor(255,0,0);
+        
+        ofDrawBitmapString("ERRORS - cannot run until fixed. Adjust settings.xml and relaunch the application.", labelX, settingCurY);
+        settingCurY += settingsSpacing * 1.5;
+        
+        for (int i=0; i<errors.size(); i++){
+            ofDrawBitmapString(errors[i], labelX, settingCurY);
+            settingCurY += settingsSpacing;
+        }
+    }
+    
+    //show warnings
+    if (warnings.size() > 0){
+        settingCurY += settingsSpacing * 2;
+        ofSetColor(100,100,0);
+        
+        ofDrawBitmapString("WARNINGS - likely to cause problems with output", labelX, settingCurY);
+        settingCurY += settingsSpacing * 1.5;
+        
+        for (int i=0; i<warnings.size(); i++){
+            ofDrawBitmapString(warnings[i], labelX, settingCurY);
+            settingCurY += settingsSpacing;
+        }
+    }
+    
+    
+    
+    
+    
+    ofPopMatrix();
     
     ofSetColor(0);
     ofDrawBitmapString("Generator by Andy Wallace. AndyMakes.com", 15, ofGetHeight()-5);
@@ -443,7 +412,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::buildPack(){
-    if (errorsFound){
+    if (errors.size() > 0){
         return;
     }
     
@@ -470,7 +439,7 @@ void ofApp::buildPack(){
                 }
             }
             if (attemptCount == maxAttaempts){
-                cout<<"not enough card images in folder "+sourceFolders[card.sourceFolderID].idName<<" to guarantee no duplicates. Ocurred on tier "<<rarityTiers[r].referenceName<<endl;
+                warnings.push_back("Not enough card images in folder '"+sourceFolders[card.sourceFolderID].idName+"' to guarantee no duplicates.");
             }
             pack.push_back(card);
         }
@@ -495,79 +464,3 @@ void ofApp::addAllCards(){
     
     
 }
-
-
-////--------------------------------------------------------------
-//void ofApp::loadCardImageFiles(){
-//    
-//    ofDirectory commonDir, uncommonDir, rareDir;
-//    commonDir.listDir(sourceFolderCommons);
-//    uncommonDir.listDir(sourceFolderUncommons);
-//    rareDir.listDir(sourceFolderRares);
-//    
-//	commons.clear();
-//	uncommons.clear();
-//	rares.clear();
-//    
-//    if (!commonDir.isDirectory()){
-//        folderNotFoundCommon = true;
-//        errorsFound = true;
-//    }else{
-//        folderNotFoundCommon = false;
-//    }
-//    
-//    if (!uncommonDir.isDirectory()){
-//        folderNotFoundUncommon = true;
-//        errorsFound = true;
-//    }else{
-//        folderNotFoundUncommon = false;
-//    }
-//    
-//    if (!rareDir.isDirectory()){
-//        folderNotFoundRare = true;
-//        errorsFound = true;
-//    }else{
-//        folderNotFoundRare = false;
-//    }
-//    
-//    if (errorsFound){
-//        return;
-//    }
-//    
-//    for (int i=0; i<commonDir.size(); i++){
-//		if (fileIsOK(commonDir.getFile(i))) {
-//			//cout << "load " << commonDir.getPath(i) << endl;
-//			ofImage newCard;
-//			newCard.loadImage(commonDir.getPath(i));
-//			commons.push_back(newCard);
-//		}
-//    }
-//    for (int i=0; i<uncommonDir.size(); i++){
-//		if (fileIsOK(uncommonDir.getFile(i))) {
-//			ofImage newCard;
-//			newCard.loadImage(uncommonDir.getPath(i));
-//			uncommons.push_back(newCard);
-//		}
-//    }
-//    for (int i=0; i<rareDir.size(); i++){
-//		if (fileIsOK(rareDir.getFile(i))) {
-//			ofImage newCard;
-//			newCard.loadImage(rareDir.getPath(i));
-//			rares.push_back(newCard);
-//		}
-//    }
-//    
-//}
-//
-//
-////--------------------------------------------------------------
-//bool ofApp::fileIsOK(ofFile thisFile) {
-//	string ext = thisFile.getExtension();
-//	std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
-//	if (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif") {
-//		return true;
-//	}
-//	cout << thisFile.getFileName() <<" was rejected because it is not a recognized file type" << endl;
-//	return false;
-//	
-//}
