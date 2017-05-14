@@ -285,10 +285,8 @@ void ofApp::draw(){
     settingCurY += settingsSpacing;
     
     //Printing info
-    settingCurY += settingsSpacing * 2;
     if (errors.size() == 0){
-        //ofPushMatrix();
-        //ofTranslate(0, settingCurY);
+        settingCurY += settingsSpacing * 2;
         
         float prc = (float)MIN(curCard, cards.size()) / (float)cards.size();
         
@@ -303,7 +301,7 @@ void ofApp::draw(){
         ofDrawBitmapString("        : "+ ofToString( (int)(prc * 100) )+"%", 15, settingCurY);
         settingCurY += settingsSpacing * 2;
         
-        int numBars = 35;//55;
+        int numBars = 35;
         int progressPoint = numBars * prc;
         
         string progress = "<";
@@ -321,8 +319,6 @@ void ofApp::draw(){
         progress += ">";
         ofDrawBitmapString(progress, 15, settingCurY);
         settingCurY += settingsSpacing;
-        
-        //ofPopMatrix();
     }
     
     //show errors
