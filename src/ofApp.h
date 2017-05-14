@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 #include <string>     // std::string, std::stoi
+#include "RarityTier.hpp"
+#include "SourceFolder.hpp"
+#include "Card.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -23,8 +26,8 @@ class ofApp : public ofBaseApp{
     void buildPack();
     void addAllCards();
     
-    void loadCardImageFiles();
-	bool fileIsOK(ofFile thisFile);
+//    void loadCardImageFiles();
+//	bool fileIsOK(ofFile thisFile);
     
     ofTrueTypeFont font;
     
@@ -34,16 +37,19 @@ class ofApp : public ofBaseApp{
     
     
     //what we're drawing from
-    string sourceFolderCommons, sourceFolderUncommons, sourceFolderRares;
-    vector<ofImage> commons, uncommons, rares;
-    int numCommonsPerPack, numUncommonsPerPack, numRaresPerPack;
+    vector<RarityTier> rarityTiers;
+    vector< SourceFolder > sourceFolders;
+    //vector<
+    //string sourceFolderCommons, sourceFolderUncommons, sourceFolderRares;
+    //vector<ofImage> commons, uncommons, rares;
+    //int numCommonsPerPack, numUncommonsPerPack, numRaresPerPack;
     int numCardsPerPack;
     bool allowDuplicates;
     
     bool printAllCards; //if this is true, instead of making booster packs, we just print one of each card
     
     //what's being pinted
-    vector<ofImage> cards;
+    vector<Card> cards;
     ofFbo fbo;
     int curCard;
     string outputFolder;

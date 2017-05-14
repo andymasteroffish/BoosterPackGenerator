@@ -1,18 +1,44 @@
-<NUM_PACKS>1</NUM_PACKS>
-<NUM_COMMON>12</NUM_COMMON>
-<NUM_UNCOMMON>4</NUM_UNCOMMON>
-<NUM_RARE>0</NUM_RARE>
+<!-- Settings -->
+<!-- use all caps for TRUE or FALSE -->
+<NUM_PACKS>100</NUM_PACKS>
 <ALLOW_DUPLICATES>FALSE</ALLOW_DUPLICATES>
-<COMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/sets/arabian_nights/c</COMMON_SOURCE_FOLDER>
-<UNCOMMON_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/sets/arabian_nights/u</UNCOMMON_SOURCE_FOLDER>
-<RARE_SOURCE_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/sets/arabian_nights/r</RARE_SOURCE_FOLDER>
-<OUTPUT_FOLDER>/Users/awallace/Documents/projects/mtg_vintage_draft/output/new</OUTPUT_FOLDER>
+<OUTPUT_FOLDER>/Users/awallace/Desktop/tcg_test/output</OUTPUT_FOLDER>
 <SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>
-<PACKS_START_COUNTING_FROM>9</PACKS_START_COUNTING_FROM>
+<PACKS_START_COUNTING_FROM>1</PACKS_START_COUNTING_FROM>
 <EDGE_PADDING>10</EDGE_PADDING>
 <CARD_PADDING>0</CARD_PADDING>
 <CLOSE_WHEN_FINISHED>FALSE</CLOSE_WHEN_FINISHED>
 
-<!-- If this is set to true, it will override all booster pack info and just print out a full set with one of each card -->
+<!-- If PRINT_ALL_CARDS_IN_ORDER is set to true, it will override all booster pack info and just print out a full set with one of each card -->
 <!-- Pack numbers will bot be printed if this is set to true -->
 <PRINT_ALL_CARDS_IN_ORDER>FALSE</PRINT_ALL_CARDS_IN_ORDER>
+
+<!-- File locations of image files -->
+<img_sources>
+	<folder id="common">/Users/awallace/Desktop/tcg_test/common</folder>
+	<folder id="uncommon">/Users/awallace/Desktop/tcg_test/uncommon</folder>
+	<folder id="rare">/Users/awallace/Desktop/tcg_test/rare</folder>
+	<folder id="promo">/Users/awallace/Desktop/tcg_test/promo</folder>
+</img_sources>
+
+<!-- Info for rarity tiers -->
+<!-- if no "chance" attribute is given for a source folder, it is assumed to be 100% -->
+<!-- every tier must list a sount and have at least one source folder -->
+<!-- you can use any number of tiers but there must be at least 1 -->
+<rarity_tiers>
+	<tier name = "common">
+		<count>4</count>
+		<folder>common</folder>
+	</tier>
+	<tier name = "promo chance">
+		<count>1</count>
+		<folder chance=80>uncommon</folder>
+		<folder chance=20>promo</folder>
+	</tier>
+	<tier name = "rare">
+		<count>1</count>
+		<folder chance=50>rare</folder>
+		<folder chance=25>common</folder>
+		<folder chance=25>promo</folder>
+	</tier>
+</rarity_tiers>
