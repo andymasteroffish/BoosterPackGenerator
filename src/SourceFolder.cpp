@@ -11,20 +11,20 @@
 void SourceFolder::setup(string _idName, string path){
     idName = _idName;
     
+    images.clear();
+    
     ofDirectory dir;
     dir.listDir(path);
     
-    images.clear();
-    
     if (!dir.isDirectory()){
         cout<<path <<" is not a directory!"<<endl;
+        errorBadFolderPath = true;
+        return;
     }else{
-        //folderNotFoundCommon = false;
+        errorBadFolderPath = false;
     }
     
-//    if (errorsFound){
-//        return;
-//    }
+   
     
     for (int i=0; i<dir.size(); i++){
         if (fileIsOK(dir.getFile(i))) {

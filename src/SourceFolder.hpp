@@ -21,6 +21,8 @@ public:
     
     string idName;
     vector<ofImage> images;
+    
+    bool errorBadFolderPath;
 };
 
 #endif /* SourceFolder_hpp */

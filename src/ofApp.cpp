@@ -55,7 +55,7 @@ void ofApp::setup(){
         
         int imgSourceNum = xml.getNumTags("folder");
         for (int i=0; i<imgSourceNum; i++){
-            string idName = xml.getAttribute("folder", "id", "unkown", i);
+            string idName = xml.getAttribute("folder", "idName", "unkown", i);
             string path = xml.getValue("folder", "unkown", i);
             cout<<"create folder "+idName+" pointing to "+path<<endl;
             
@@ -68,7 +68,11 @@ void ofApp::setup(){
             else{
                 SourceFolder folder;
                 folder.setup(idName, path);
-                sourceFolders.push_back(folder);
+                if (folder.errorBadFolderPath){
+                    errors.push_back("Image source folder path "+path+" does not exist");
+                }else{
+                    sourceFolders.push_back(folder);
+                }
             }
         }
         
@@ -190,7 +194,7 @@ void ofApp::update(){
 					ofSetColor(255);
                     int sourceID = cards[curCard].sourceFolderID;
                     int imgID = cards[curCard].idNum;
-                    sourceFolders[sourceID].images[imgID].draw(cardW*c+edgePadding, cardH*r+edgePadding, false);
+                    sourceFolders[sourceID].images[imgID].draw(cardW*c+edgePadding, cardH*r+edgePadding, cardW, cardH);
                     
                     //print the pack number
                     if (showPackNumbers && !printAllCards){
