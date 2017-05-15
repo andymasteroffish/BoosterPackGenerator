@@ -32,6 +32,7 @@ class ofApp : public ofBaseApp{
     int packSize;
     int cardW, cardH;
     
+    bool exportPNGs, exportPDF;
     
     //what we're drawing from
     vector<RarityTier> rarityTiers;

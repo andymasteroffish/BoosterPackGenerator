@@ -36,6 +36,8 @@ void ofApp::setup(){
         numPacks = xml.getValue("NUM_PACKS", numPacks);
         
         outputFolder = xml.getValue("OUTPUT_FOLDER", outputFolder);
+        exportPDF = xml.getValue("EXPORT_PDF", "TRUE") == "TRUE";
+        exportPNGs = xml.getValue("EXPORT_PNGS", "FALSE") == "TRUE";
         
         closeWhenDone = xml.getValue("CLOSE_WHEN_FINISHED", "FALSE") == "TRUE";
         
@@ -145,6 +147,11 @@ void ofApp::setup(){
         errors.push_back("No rarity tiers with at least one valid source folder.");
     }
     
+    //make sure there will be output
+    if (!exportPDF && !exportPNGs){
+        errors.push_back("Either EXPORT_PDF or EXPORT_PNGS must be set to TRUE. Check settings.xml.");
+    }
+    
     //count the number of cards that will be in each pack
     numCardsPerPack = 0;
     for (int i=0; i<rarityTiers.size(); i++){
@@ -158,7 +165,7 @@ void ofApp::setup(){
     }
     int pagePadding = 0;
     
-    font.loadFont("frabk.ttf", (int)((float)cardH * 0.033));
+    font.load("frabk.ttf", (int)((float)cardH * 0.033), true, false, true);
     
     fbo.allocate(cardW*3+pagePadding+edgePadding*2-cardPadding, cardH*3+pagePadding+edgePadding*2-cardPadding, GL_RGB);
     
@@ -172,7 +179,7 @@ void ofApp::setup(){
     
     curCard = 0;
     
-    if (errors.size() == 0){
+    if (errors.size() == 0 && exportPDF){
         ofBeginSaveScreenAsPDF(outputFolder+"/boosters.pdf", true, false, ofRectangle(0,0,fbo.getWidth(),fbo.getHeight()));
     }
     
@@ -216,7 +223,7 @@ void ofApp::update(){
                         ofTranslate(cardW*c +edgePadding + boxPadding, cardH*(r+1) - cardPadding + edgePadding - boxPadding);
                         
                         ofSetColor(255,80);
-                        ofRect(outterBox);
+                        ofDrawRectangle(outterBox);
                         ofSetColor(0);
                         font.drawString(packNumber, 0, 0);
                         ofPopMatrix();
@@ -228,19 +235,21 @@ void ofApp::update(){
             }
         }
         
-        if (curCard >= cards.size()){
+        if (curCard >= cards.size() && exportPDF){
             ofEndSaveScreenAsPDF();
         }
 		
         fbo.end();
         
-		ofPixels pixels;
-        fbo.readToPixels(pixels);
-        
-        ofImage pic;
-        pic.allocate(fbo.getWidth(), fbo.getHeight(), OF_IMAGE_COLOR);
-        pic.setFromPixels(pixels);
-        pic.saveImage(outputFolder+"/page"+ofToString(curCard/9)+".png");
+        if (exportPNGs){
+            ofPixels pixels;
+            fbo.readToPixels(pixels);
+            
+            ofImage pic;
+            pic.allocate(fbo.getWidth(), fbo.getHeight(), OF_IMAGE_COLOR);
+            pic.setFromPixels(pixels);
+            pic.save(outputFolder+"/page"+ofToString(curCard/9)+".png");
+        }
 		
     }
     else if (closeWhenDone){
