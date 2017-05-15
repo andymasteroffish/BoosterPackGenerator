@@ -1,6 +1,6 @@
 <!-- Settings -->
 <!-- use all caps for TRUE or FALSE fields -->
-<NUM_PACKS>100</NUM_PACKS>
+<NUM_PACKS>1</NUM_PACKS>
 <ALLOW_DUPLICATES>FALSE</ALLOW_DUPLICATES>
 <OUTPUT_FOLDER>/Users/awallace/Desktop/tcg_test/output</OUTPUT_FOLDER>
 <SHOW_PACK_NUMBERS>TRUE</SHOW_PACK_NUMBERS>

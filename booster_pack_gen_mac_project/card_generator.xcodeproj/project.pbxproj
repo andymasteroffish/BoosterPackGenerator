@@ -15,7 +15,6 @@
 		572C3FC31C9C9EBF00FB16EB /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 572C3FC01C9C9EBF00FB16EB /* ofApp.cpp */; };
 		57F912C21EC8CD61000EB03A /* RarityTier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F912C01EC8CD61000EB03A /* RarityTier.cpp */; };
 		57F912C51EC8CE3F000EB03A /* SourceFolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F912C31EC8CE3F000EB03A /* SourceFolder.cpp */; };
-		57F912C81EC8CE93000EB03A /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57F912C61EC8CE93000EB03A /* Card.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -79,7 +78,6 @@
 		57F912C11EC8CD61000EB03A /* RarityTier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RarityTier.hpp; path = ../../src/RarityTier.hpp; sourceTree = "<group>"; };
 		57F912C31EC8CE3F000EB03A /* SourceFolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SourceFolder.cpp; path = ../../src/SourceFolder.cpp; sourceTree = "<group>"; };
 		57F912C41EC8CE3F000EB03A /* SourceFolder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SourceFolder.hpp; path = ../../src/SourceFolder.hpp; sourceTree = "<group>"; };
-		57F912C61EC8CE93000EB03A /* Card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Card.cpp; path = ../../src/Card.cpp; sourceTree = "<group>"; };
 		57F912C71EC8CE93000EB03A /* Card.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Card.hpp; path = ../../src/Card.hpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -238,7 +236,6 @@
 				57F912C41EC8CE3F000EB03A /* SourceFolder.hpp */,
 				57F912C31EC8CE3F000EB03A /* SourceFolder.cpp */,
 				57F912C71EC8CE93000EB03A /* Card.hpp */,
-				57F912C61EC8CE93000EB03A /* Card.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -339,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57F912C81EC8CE93000EB03A /* Card.cpp in Sources */,
 				5711D9061C9605E50023B3B4 /* ofxXmlSettings.cpp in Sources */,
 				5711D9041C9605E50023B3B4 /* tinyxmlerror.cpp in Sources */,
 				57F912C21EC8CD61000EB03A /* RarityTier.cpp in Sources */,

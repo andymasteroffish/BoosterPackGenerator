@@ -172,6 +172,10 @@ void ofApp::setup(){
     
     curCard = 0;
     
+    if (errors.size() == 0){
+        ofBeginSaveScreenAsPDF(outputFolder+"/boosters.pdf", true, false, ofRectangle(0,0,fbo.getWidth(),fbo.getHeight()));
+    }
+    
 }
 
 //--------------------------------------------------------------
@@ -223,6 +227,10 @@ void ofApp::update(){
 				
             }
         }
+        
+        if (curCard >= cards.size()){
+            ofEndSaveScreenAsPDF();
+        }
 		
         fbo.end();
         
@@ -235,11 +243,9 @@ void ofApp::update(){
         pic.saveImage(outputFolder+"/page"+ofToString(curCard/9)+".png");
 		
     }
-	
-	else if (closeWhenDone){
+    else if (closeWhenDone){
         std::exit(1);
     }
-	
     
 }
 
