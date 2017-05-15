@@ -35,6 +35,8 @@ void SourceFolder::setup(string _idName, string path){
         }
     }
     
+    errorNoImages = images.size() == 0;
+    
     cout<<"loaded "<<images.size()<<" cards into "+idName<<endl;
 }
 

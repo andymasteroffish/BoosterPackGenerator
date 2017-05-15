@@ -368,6 +368,9 @@
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
+				ICON_FILE_PATH = "$(OF_PATH)/apps/BoosterPackGenerator/icon/";
+				ICON_NAME_DEBUG = tcg_proxy_gen.icns;
+				ICON_NAME_RELEASE = tcg_proxy_gen.icns;
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -396,6 +399,9 @@
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
+				ICON_FILE_PATH = "$(OF_PATH)/apps/BoosterPackGenerator/icon/";
+				ICON_NAME_DEBUG = tcg_proxy_gen.icns;
+				ICON_NAME_RELEASE = tcg_proxy_gen.icns;
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

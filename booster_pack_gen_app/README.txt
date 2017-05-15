@@ -5,14 +5,13 @@ Booster Pack Generator
 A lightweight app that takes card images from folders and spits out print-and-play booster pack sheets.
 version 2.0
 
+Note: if you just want to print proxies of a few cards, I have a much more user friendly tool here: [LINK]
+This tool is for printing full booster packs and is mostly useful for folks making full fan sets or running proxy booster drafts.
+
 Made by Andy Wallace.
 AndyMakes.com
 @andy_makes
 andy@andymakes.com
-
-Created using openFrameworks.
-
-The code for this project can be found here: https://github.com/andymasteroffish/BoosterPackGenerator
 
 
 ------------------
@@ -54,6 +53,11 @@ NUM_PACKS : How many packs to print.
 ALLOW_DUPLICATES : If set to “TRUE” a single pack can contain duplicates of the same card. If “FALSE”, each booster pack will contain only one of each card (assuming there are enough images in the source folder to do this).
 
 OUTPUT_FOLDER : The path to the folder on your computer that the resulting printouts should go to. If the folder does not exist, the app will create it.
+
+EXPORT_PDF : If set to "TRUE" a pdf of all of the pages will be saved in the output folder
+
+EXPORT_PNG : If set to "TRUE" each page will be saved as an individual png file in the output folder
+(EXPORT_PDF & EXPORT_PNG can both be set to true)
 
 SHOW_PACK_NUMBERS : If set to "TRUE" a small box will appear at the bottom left corner showing the number of this pack. Useful because packs may be spread across several sheets.
 
@@ -117,4 +121,37 @@ There will be 1 card in each pack at this rarity, but that card image might come
 A rarity tier like this can be used to account for rarity levels that do not occur in every pack, or to occasionaly let a card at one rarity level be replaced with one from a different source folder.
 
 As you can see in the more straight forward "commons" example, if a folder does not have a set chance attribute, it will default to 100. If the chance values of the folders in a given tier do not add up to 100, the application will account for that.
+
+------------------
+Issues / Concerns
+------------------
+
+If someting is not working or if there is some feature you'd like to see hit me up at andy@andymakes.com or on twitter @andy_makes. I have a full time job other than dev and I tend to have a lot of game projects going at once so no promises that I will be able to fix/change things in a timely fashion or at all, but as long as you don't mind that, I'd love to hear from you!
+
+You can check out my other games on Itch: itch.io/andymakes
+
+This tool is free. You can share it, although I’d like it if you kept this readme with it.
+
+
+If this tool is useful to you (or if it isn’t), please donate to one of these amazing organizations:
+
+Lambda Legal
+www.lambdalegal.org
+
+ACLU
+www.aclu.org
+
+Sylvia Rivera Law Project
+srlp.org
+
+Planned Parenthood
+www.plannedparenthood.org
+
+Black Lives Matter
+blacklivesmatter.com
+
+
+This tool was written in openFrameworks 0.9.3
+The source code for this project can be viewed here:
+https://github.com/andymasteroffish/BoosterPackGenerator
 

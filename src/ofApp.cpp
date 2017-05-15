@@ -72,7 +72,12 @@ void ofApp::setup(){
                 folder.setup(idName, path);
                 if (folder.errorBadFolderPath){
                     errors.push_back("Image source folder path "+path+" does not exist");
-                }else{
+                }
+                else if (folder.errorNoImages){
+                    errors.push_back("Image source folder '"+idName+"' has no valid image files.");
+                    errors.push_back("    images must use .jpg .jpeg .png or .gif");
+                }
+                else{
                     sourceFolders.push_back(folder);
                 }
             }
@@ -140,6 +145,11 @@ void ofApp::setup(){
         
     }else{
         errors.push_back("settings.xml file not found. Check readme for info.");
+    }
+    
+    //make sure there is at least one imag source
+    if (sourceFolders.size() == 0){
+        errors.push_back("No image source folders. Check the <img_sources> tag in settings.xml.");
     }
     
     //make sure we have at least one rarity tier
@@ -277,6 +287,8 @@ void ofApp::draw(){
     settingCurY += settingsSpacing;
     ofDrawBitmapString("Output folder: ", labelX, settingCurY);
     settingCurY += settingsSpacing;
+    ofDrawBitmapString("Export type: ", labelX, settingCurY);
+    settingCurY += settingsSpacing;
     ofDrawBitmapString("Show pack numbers:", labelX, settingCurY);
     settingCurY += settingsSpacing;
     ofDrawBitmapString("Edge padding (px):", labelX, settingCurY);
@@ -293,6 +305,12 @@ void ofApp::draw(){
     ofDrawBitmapString(allowDuplicates ? "TRUE" : "FALSE", valueX, settingCurY);
     settingCurY += settingsSpacing;
     ofDrawBitmapString(outputFolder, valueX, settingCurY);
+    settingCurY += settingsSpacing;
+    string exportType = "PDF & PNG";
+    if (exportPDF && !exportPNGs)   exportType = "PDF";
+    if (!exportPDF && exportPNGs)   exportType = "PNG";
+    if (!exportPDF && !exportPNGs)   exportType = "None (That's bad)";
+    ofDrawBitmapString(exportType, valueX, settingCurY);
     settingCurY += settingsSpacing;
     ofDrawBitmapString(showPackNumbers ? "TRUE" : "FALSE", valueX, settingCurY);
     settingCurY += settingsSpacing;
@@ -345,7 +363,9 @@ void ofApp::draw(){
         settingCurY += settingsSpacing * 2;
         ofSetColor(255,0,0);
         
-        ofDrawBitmapString("ERRORS - cannot run until fixed. Adjust settings.xml and relaunch the application.", labelX, settingCurY);
+        ofDrawBitmapString("ERRORS found. Cannot run until fixed.", labelX, settingCurY);
+        settingCurY += settingsSpacing;
+        ofDrawBitmapString("Adjust settings.xml and relaunch the application.", labelX, settingCurY);
         settingCurY += settingsSpacing * 1.5;
         
         for (int i=0; i<errors.size(); i++){
@@ -355,7 +375,7 @@ void ofApp::draw(){
     }
     
     //show warnings
-    if (warnings.size() > 0){
+    if (warnings.size() > 0 && errors.size() == 0){
         settingCurY += settingsSpacing * 2;
         ofSetColor(100,100,0);
         

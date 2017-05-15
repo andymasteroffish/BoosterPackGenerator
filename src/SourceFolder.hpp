@@ -23,6 +23,7 @@ public:
     vector<ofImage> images;
     
     bool errorBadFolderPath;
+    bool errorNoImages;
 };
 
 #endif /* SourceFolder_hpp */
