@@ -5,7 +5,7 @@ Booster Pack Generator
 A lightweight app that takes card images from folders and spits out print-and-play booster pack sheets.
 version 2.0
 
-Note: if you just want to print proxies of a few cards, I have a much more user friendly tool here: [LINK]
+Note: if you just want to print proxies of a few cards, I have a much more user friendly tool here: https://andymakes.itch.io/tcg-proxy-generator
 This tool is for printing full booster packs and is mostly useful for folks making full fan sets or running proxy booster drafts.
 
 Made by Andy Wallace.
@@ -22,10 +22,10 @@ This app will create ready to print booster packs by drawing images from folders
 
 Images must be .jpg .gif or .png. Any files not of this type will be skipped.
 
-There is a settings.xml file that the app will look for that describes where the card images are and with what frequency they should appear (among other things).
+There is a settings.xml file that the app will look for that describes where the card images are and with what frequency they should appear (among other things). This is how you set the parameters for the app to use when it builds the packs.
 This file must be in the same folder as the app.
 
-You can edit settings.xml by opening it up with any text editting program.
+You can edit settings.xml by opening it up with any text editting program. Sublime is a nice one: https://www.sublimetext.com/3
 
 
 ------------------
@@ -33,9 +33,9 @@ Settings XML
 ------------------
 
 The settings.xml file is how you determine how the booster packs will be made & printed. It is broken up into three sections:
--general settings, options about how many packs to print and how to print them
--image sources, any number of folders that you want to pull images from (most representing different rarities)
--rarity tiers, describing which folder(s) each tier should draw from at what frequency
+-General Settings, options about how many packs to print and how to print them
+-Image Sources, any number of folders that you want to pull images from (most representing different rarities)
+-Rarity Tiers, describing which folder(s) each tier should draw from at what frequency
 
 It is an XML file and so must follow XML formatting. Some example fields are given for img_sources and rarity_tiers. These are just to show what the formatting looks like and can be altered or removed entirely.
 
