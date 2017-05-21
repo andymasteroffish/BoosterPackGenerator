@@ -2,6 +2,7 @@
 <!-- General Settings -->
 <!---------------------->
 <!-- use all caps for TRUE or FALSE fields -->
+
 <NUM_PACKS>10</NUM_PACKS>
 <ALLOW_DUPLICATES>FALSE</ALLOW_DUPLICATES>
 <OUTPUT_FOLDER>/Users/awallace/Desktop/tcg_test/output</OUTPUT_FOLDER>
@@ -23,6 +24,7 @@
 <!-- either an absolute or relative path can be used -->
 <!-- if giving a relative path to a folder next to the applicaiton, begin with "../" as the path is relative to the data folder, not the folder the applicaiton is in. -->
 <!-- the folders provided here are examples and should be replaced. You can have as many image source folders as your project requires, but you must have at least one -->
+
 <img_sources>
 	<folder idName = "common">/Users/awallace/Desktop/tcg_test/common</folder>
 	<folder idName = "rare">/Users/awallace/Desktop/tcg_test/rare/</folder>
@@ -37,6 +39,7 @@
 <!-- you can use any number of tiers but there must be at least 1 -->
 <!-- if no "chance" attribute is given for a source folder, it is assumed to be 100% -->
 <!-- the tiers provided here are exmaples and can be editted or removed -->
+
 <rarity_tiers>
 	<tier name = "common">
 		<count>5</count>
