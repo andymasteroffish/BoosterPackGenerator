@@ -31,7 +31,12 @@ void SourceFolder::setup(string _idName, string path){
             //cout << "load " << dir.getPath(i) << endl;
             ofImage newCard;
             newCard.loadImage(dir.getPath(i));
-            images.push_back(newCard);
+			if (!newCard.isAllocated()) {
+				cout << "skipping that file." << endl;
+			}
+			else {
+				images.push_back(newCard);
+			}
         }
     }
     
