@@ -51,14 +51,14 @@
 		01DCC0911400F9ACF5B65578 /* ofxXmlSettings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxXmlSettings.h; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = SOURCE_ROOT; };
 		2B40EDA85BEB63E46785BC29 /* tinyxml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxml.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxml.cpp; sourceTree = SOURCE_ROOT; };
 		50DF87D612C5AAE17AAFA6C0 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxXmlSettings.cpp; path = ../../../addons/ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = SOURCE_ROOT; };
-		5724A70B1EC937E300D44704 /* Card.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Card.hpp; path = ../../src/Card.hpp; sourceTree = "<group>"; };
-		5724A70C1EC937E300D44704 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../src/main.cpp; sourceTree = "<group>"; };
-		5724A70D1EC937E300D44704 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofApp.cpp; path = ../../src/ofApp.cpp; sourceTree = "<group>"; };
-		5724A70E1EC937E300D44704 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = ../../src/ofApp.h; sourceTree = "<group>"; };
-		5724A70F1EC937E300D44704 /* RarityTier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RarityTier.cpp; path = ../../src/RarityTier.cpp; sourceTree = "<group>"; };
-		5724A7101EC937E300D44704 /* RarityTier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RarityTier.hpp; path = ../../src/RarityTier.hpp; sourceTree = "<group>"; };
-		5724A7111EC937E300D44704 /* SourceFolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SourceFolder.cpp; path = ../../src/SourceFolder.cpp; sourceTree = "<group>"; };
-		5724A7121EC937E300D44704 /* SourceFolder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SourceFolder.hpp; path = ../../src/SourceFolder.hpp; sourceTree = "<group>"; };
+		5724A70B1EC937E300D44704 /* Card.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Card.hpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/Card.hpp; sourceTree = "<absolute>"; };
+		5724A70C1EC937E300D44704 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/main.cpp; sourceTree = "<absolute>"; };
+		5724A70D1EC937E300D44704 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofApp.cpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/ofApp.cpp; sourceTree = "<absolute>"; };
+		5724A70E1EC937E300D44704 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/ofApp.h; sourceTree = "<absolute>"; };
+		5724A70F1EC937E300D44704 /* RarityTier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RarityTier.cpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/RarityTier.cpp; sourceTree = "<absolute>"; };
+		5724A7101EC937E300D44704 /* RarityTier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = RarityTier.hpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/RarityTier.hpp; sourceTree = "<absolute>"; };
+		5724A7111EC937E300D44704 /* SourceFolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SourceFolder.cpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/SourceFolder.cpp; sourceTree = "<absolute>"; };
+		5724A7121EC937E300D44704 /* SourceFolder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SourceFolder.hpp; path = /Users/awallace/Documents/openframeworks/of_v0.9.3_osx_release/apps/BoosterPackGenerator/src/SourceFolder.hpp; sourceTree = "<absolute>"; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../../addons/ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		B21E7E5F548EEA92F368040B /* tinyxml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = tinyxml.h; path = ../../../addons/ofxXmlSettings/libs/tinyxml.h; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -158,8 +158,9 @@
 				5724A7111EC937E300D44704 /* SourceFolder.cpp */,
 				5724A70B1EC937E300D44704 /* Card.hpp */,
 			);
-			path = src;
-			sourceTree = SOURCE_ROOT;
+			name = src;
+			path = ../src;
+			sourceTree = "<group>";
 		};
 		E4EEC9E9138DF44700A80321 /* openFrameworks */ = {
 			isa = PBXGroup;
