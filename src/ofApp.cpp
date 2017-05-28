@@ -59,7 +59,7 @@ void ofApp::setup(){
         for (int i=0; i<imgSourceNum; i++){
             string idName = xml.getAttribute("folder", "idName", "unkown", i);
             string path = xml.getValue("folder", "unkown", i);
-            cout<<"create folder "+idName+" pointing to "+path<<endl;
+            cout<<"created folder "+idName+" pointing to "+path<<endl;
             
             if (idName == "unkown"){
                 errors.push_back("Image source folder "+ofToString(i)+" has no id name.");
