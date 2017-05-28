@@ -26,9 +26,9 @@
 <!-- the folders provided here are examples and should be replaced. You can have as many image source folders as your project requires, but you must have at least one -->
 
 <img_sources>
-	<folder idName = "common">/Users/awallace/Desktop/tcg_test/common</folder>
-	<folder idName = "rare">/Users/awallace/Desktop/tcg_test/rare/</folder>
-	<folder idName = "promo">/Users/awallace/Desktop/tcg_test/promo</folder>
+	<folder idName = "common">/Users/your_name/Desktop/some_folder/common</folder> 	<!-- Mac example path -->
+	<folder idName = "rare">C:/Users/your_name/Desktop/some_folder/rare/</folder> 	<!-- Windows exmaple path -->
+	<folder idName = "promo">../promo</folder> 		<!-- relative path example (for a folder next to the application) -->
 </img_sources>
 
 
@@ -38,7 +38,8 @@
 <!-- every tier must have a count and have at least one source folder (there is no maximum number of source folders in a tier) -->
 <!-- you can use any number of tiers but there must be at least 1 -->
 <!-- if no "chance" attribute is given for a source folder, it is assumed to be 100% -->
-<!-- the tiers provided here are exmaples and can be editted or removed -->
+<!-- each tier must have a unique name -->
+<!-- the tiers provided here are exmaples and can be editted, removed, or duplicated as needed -->
 
 <rarity_tiers>
 	<tier name = "common">
@@ -57,3 +58,5 @@
 	</tier>
 </rarity_tiers>
 
+<!-- Booster Pack Generator by Andy Wallace (andymakes.com) -->
+<!-- View the readme.txt for more info -->

@@ -296,6 +296,8 @@ void ofApp::draw(){
     ofDrawBitmapString("Card padding (px):", labelX, settingCurY);
     settingCurY += settingsSpacing;
     ofDrawBitmapString("Close when finished:", labelX, settingCurY);
+    settingCurY += settingsSpacing;
+    ofDrawBitmapString("Print One Of Each Card:", labelX, settingCurY);
     
     //values
     int valueX = 250;
@@ -320,10 +322,12 @@ void ofApp::draw(){
     settingCurY += settingsSpacing;
     ofDrawBitmapString(closeWhenDone ? "TRUE" : "FALSE", valueX, settingCurY);
     settingCurY += settingsSpacing;
+    ofDrawBitmapString(printAllCards ? "TRUE" : "FALSE", valueX, settingCurY);
+    settingCurY += settingsSpacing;
     
     //Printing info
     if (errors.size() == 0){
-        settingCurY += settingsSpacing * 2;
+        settingCurY += settingsSpacing * 1;
         
         float prc = (float)MIN(curCard, cards.size()) / (float)cards.size();
         
@@ -494,6 +498,7 @@ void ofApp::addAllCards(){
             Card thisCard;
             thisCard.sourceFolderID = i;
             thisCard.idNum = k;
+            cards.push_back(thisCard);
         }
     }
     
