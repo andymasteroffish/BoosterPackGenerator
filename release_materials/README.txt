@@ -11,6 +11,7 @@ Note: This tool is for printing full booster packs and is mostly useful for folk
 On Windows, if you get "Windows protected your PC" when opening the application, click "more info" and then "Run Anyway."
 
 On Mac, if you get a message saying it can't be opened because it is from an unidentified developer, click OK. Right click (or command click) the app and select Open. This time when the unidentified developer window pops up, click open.
+(If you're using mac OS Sierra, see this post on how to get it to run http://andymakesgames.tumblr.com/post/161517690384/why-particle-mace-and-all-of-my-other-games-and)
 
 
 Made by Andy Wallace.
