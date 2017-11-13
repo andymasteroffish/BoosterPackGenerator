@@ -198,8 +198,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    
-    if (errors.size() > 0){
+    //for some reason, saving the screen on the first frame does not work, so we wait one frame to start making cards
+    if (errors.size() > 0 || ofGetFrameNum() < 1){
         return;
     }
 	
