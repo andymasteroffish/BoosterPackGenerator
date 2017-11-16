@@ -207,6 +207,7 @@ void ofApp::update(){
         fbo.begin();
         ofClear(255,255,255,0);
         ofSetColor(255);
+        ofDrawRectangle(0, 0, fbo.getWidth(), fbo.getHeight());
 
         for (int r=0; r<3; r++){
             for (int c=0; c<3; c++){
@@ -241,7 +242,6 @@ void ofApp::update(){
                     }
 				}
 				curCard++;
-				
             }
         }
         
